@@ -56,14 +56,24 @@ class EmailVerificationService
 
     public function sendVerificationEmail(User $user, string $token): void
     {
-        // Implement your email sending logic here
         $hashedUserId = $this->hashUserId($user->id);
+        
+        // Add validation to ensure we have proper string values
+        if (!is_string($hashedUserId)) {
+            throw new \RuntimeException('Hashed user ID must be a string');
+        }
+        
+        if (!is_string($token)) {
+            throw new \RuntimeException('Token must be a string');
+        }
+    
+        // Explicitly cast parameters to string
         $verificationUrl = route('verification.verify', [
-            'hashedUserId' => $hashedUserId,
-            'token' => $token,
+            'hashedUserId' => (string)$hashedUserId,
+            'token' => (string)$token,
         ]);
-
-        // Example using Laravel mail (you'll need to create the mailable)
+    
+        // Uncomment this when ready to send actual emails
         // Mail::to($user->email)->send(new EmailVerificationMail($verificationUrl));
     }
 
