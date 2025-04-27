@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class EmailVerification extends Mailable
+class VerificationEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -27,7 +27,7 @@ class EmailVerification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Email Verification',
+            subject: 'Password Reset Confirmation',
         );
     }
 

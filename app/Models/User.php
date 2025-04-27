@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-    protected $fillable = ['email', 'passwordHash', 'status'];
+    protected $fillable = ['email', 'name', 'passwordHash', 'status'];
 
     public function verifications()
     {
